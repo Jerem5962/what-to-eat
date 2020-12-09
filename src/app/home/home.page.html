@@ -1,20 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Que manger today ?
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid *ngIf="meals">
+
+    <ion-select (ionChange)="onChange($event)" [(ngModel)]="MEALDB_Category" *ngIf="categories">
+      <ion-select-option *ngFor="let category of categories" [value]="category.strCategory">{{ category.strCategory }}</ion-select-option>
+    </ion-select>
+
+    <ion-row>
+      <ion-col [routerLink]="'/meal/' + meal.idMeal" *ngFor="let meal of meals" size="6">
+        <ion-img [src]="meal.strMealThumb"></ion-img>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 </ion-content>
